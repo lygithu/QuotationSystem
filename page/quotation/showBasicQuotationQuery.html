@@ -14,26 +14,38 @@
 </head>
 
 <body>
-  <div class="layuimini-container">
-    <div class="layuimini-main">
-      <div class="layui-btn-group">
-        <button type="button" class="layui-btn layui-btn-normal" id="nextBut">
-           上一步
-        </button>
-        <button type="button" class="layui-btn layui-btn-normal">
-                <i class="layui-icon">&#xe60e;</i> 保存
-              </button>
-              <button type="button" class="layui-btn layui-btn-normal">
-                    <i class="layui-icon">&#xe601;</i> 保存并导出
-                  </button>
+ 
+   
+      <fieldset style="background: #fff" class="layui-elem-field layuimini-search">
+        <legend>基础报价表</legend>
+        <div style="margin: 10px 10px 10px 10px">
+          <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+        </div>
+    </fieldset>
+    
+    <fieldset style="background: #fff" class="layui-elem-field layuimini-search">
+      <legend>折前</legend>
+      <div style="margin: 10px 10px 10px 10px">
+        <table class="layui-hide" id="currentTableId1" lay-filter="currentTableFilter"></table>
       </div>
-      <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+  </fieldset>
+  
+  <fieldset style="background: #fff" class="layui-elem-field layuimini-search">
+    <legend>折后</legend>
+    <div style="margin: 10px 10px 10px 10px">
+      <table class="layui-hide" id="currentTableId2" lay-filter="currentTableFilter"></table>
+    </div>
+</fieldset>
+    <div class="layui-btn-group">
+      <button type="button" class="layui-btn layui-btn-normal">
+            <i class="layui-icon">&#xe601;</i> 导出
+          </button>
+</div>
       <script type="text/html" id="currentTableBar">
         <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
       </script>
-    </div>
-  </div>
+  
   <script src="../../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
   <script>
     layui.use(['form', 'table', 'laydate'], function () {
@@ -172,6 +184,100 @@
         //     fixed: "right",
         //     align: "center"
         //   }
+          ]
+        ],
+        limits: [10, 15, 20, 25, 50, 100],
+        limit: 15,
+        page: false
+      });
+      table.render({
+        elem: '#currentTableId1',
+        url: '../../TestData/TGEList.json',
+        cols: [
+          [
+          {
+            field: 't1',
+            title: '起重重量(kg)'
+          },
+          {
+            field: 't2',
+            title: '首重(10kg)',
+          },
+          {
+            field: 't3',
+            title: '续重10-20kg'
+          },
+          {
+            field: 't4',
+            title: '20kg价格',
+          },
+          {
+            field: 't5',
+            title: '续重20kg-50kg',
+          },
+          {
+            field: 't6',
+            title: '续重50kg-100g',
+          },
+          {
+            field: 't7',
+            title: '续重100kg-300kg',
+          },
+          {
+            field: 't8',
+            title: '续重300kg-500kg',
+          },
+          {
+            field: 't9',
+            title: '续重500kg+',
+          }
+          ]
+        ],
+        limits: [10, 15, 20, 25, 50, 100],
+        limit: 15,
+        page: false
+      });
+      table.render({
+        elem: '#currentTableId2',
+        url: '../../TestData/TGEList.json',
+        cols: [
+          [
+          {
+            field: 't1',
+            title: '起重重量(kg)'
+          },
+          {
+            field: 't2',
+            title: '首重(10kg)',
+          },
+          {
+            field: 't3',
+            title: '续重10-20kg'
+          },
+          {
+            field: 't4',
+            title: '20kg价格',
+          },
+          {
+            field: 't5',
+            title: '续重20kg-50kg',
+          },
+          {
+            field: 't6',
+            title: '续重50kg-100g',
+          },
+          {
+            field: 't7',
+            title: '续重100kg-300kg',
+          },
+          {
+            field: 't8',
+            title: '续重300kg-500kg',
+          },
+          {
+            field: 't9',
+            title: '续重500kg+',
+          }
           ]
         ],
         limits: [10, 15, 20, 25, 50, 100],
