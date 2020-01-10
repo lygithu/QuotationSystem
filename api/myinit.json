@@ -1,0 +1,43 @@
+{
+  "clearInfo": {
+    "clearUrl": ""
+  },
+  "homeInfo": {
+    "title": "首页",
+    "icon": "fa fa-home",
+    "href": "MainPage/Home.html"
+  },
+  "logoInfo": {
+    "title": "报价管理系统",
+    "image": "images/logo.png",
+    "href": ""
+  },
+  "menuInfo": {
+    "other": {
+      "title": "基础功能",
+      "icon": "fa fa-slideshare",
+      "child": [
+        {
+          "title": "报价单管理",
+          "href": "",
+          "icon": "fa fa-meetup",
+          "target": "",
+          "child": [
+            {
+              "title": "基础报价查询",
+              "href": "page/quotation/BasicQuotationQuery.html",
+              "icon": "fa fa-subway",
+              "target": "_self"
+            },
+            {
+              "title": "我的报价",
+              "href": "page/quotation/myQuotation.html",
+              "icon": "fa fa-train",
+              "target": "_self"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
