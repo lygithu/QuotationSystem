@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../lib/layui-v2.5.4/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../css/public.css" media="all">
+  <link rel="stylesheet" href="../../css/systeming.css" media="all">
+  </link>
+</head>
+
+<body>
+  <div class="layuimini-container">
+    <div class="layuimini-main">
+      <fieldset class="layui-elem-field layuimini-search">
+        <legend>搜索条件</legend>
+        <div style="margin: 10px 10px 10px 10px">
+          <form class="layui-form layui-form-pane" action="">
+            <div class="layui-form-item">
+            <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <input type="text" autocomplete="off" placeholder="账号" class="layui-input">
+                    </div>
+                    </div>
+              <div class="layui-inline">
+                <div class="layui-input-inline">
+                  <select>
+                    <option value="">选择部门</option>
+                    <option value="1">销售部</option>
+                    <option value="2">销售部</option>
+                    <option value="3">销售部</option>
+                  </select>
+                </div>
+              </div>
+              <div class="layui-inline">
+                <div class="layui-input-inline">
+                  <input type="text" id="date2" autocomplete="off" placeholder="添加时间" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-inline">
+                <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">查询</a>
+              </div>
+              <div class="layui-inline"> <button type="button" class="layui-btn layui-btn-normal" id="addUser">
+                    <i class="layui-icon">&#xe608;</i> 
+               新增用户
+            </button></div>
+             
+              <div class="layui-inline">
+                    <button type="button" class="layui-btn layui-btn-danger">
+                      <i class="layui-icon">&#xe666;</i> 重置
+                    </button>
+                  </div>
+            </div>
+          </form>
+        </div>
+      </fieldset>
+      <div class="layui-row">
+            <div class="layui-col-xs2">
+              <div class="grid-demo grid-demo-bg1">
+                    <div id="test9" class="demo-tree demo-tree-box"></div>
+              </div>
+            </div>
+            <div class="layui-col-xs10">
+              <div class="grid-demo"> <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table></div>
+            </div>
+          </div>
+     
+      <script type="text/html" id="currentTableBar">
+        <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+      </script>
+    </div>
+  </div>
+  <script src="../../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+  <script>
+    layui.use(['tree','form', 'table', 'laydate'], function () {
+      var $ = layui.jquery,
+      tree = layui.tree,
+        form = layui.form,
+        laydate = layui.laydate,
+        table = layui.table;
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#date1' //指定元素
+      });
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#date2' //指定元素
+      });
+
+      table.render({
+        elem: '#currentTableId',
+        url: '../../TestData/userS.json',
+        cols: [
+          [
+          {
+            field: 't1',
+            title: '登录账号'
+          },
+          {
+            field: 't2',
+            title: '角色',
+          },
+          {
+            field: 't3',
+            title: '部门'
+          },
+          {
+            field: 't4',
+            title: '姓名',
+          },
+          {
+            field: 't5',
+            title: '性别',
+          },
+          {
+            title: '操作',
+            minWidth: 150,
+            templet: '#currentTableBar',
+            fixed: "right",
+            align: "center"
+          }
+          ]
+        ],
+        limits: [10, 15, 20, 25, 50, 100],
+        limit: 15,
+        page: true
+      });
+
+      // 监听搜索操作
+      form.on('submit(data-search-btn)', function (data) {
+        var result = JSON.stringify(data.field);
+        // layer.alert(result, {
+        //   title: '最终的搜索信息'
+        // });
+
+        //执行搜索重载
+        table.reload('currentTableId', {
+          page: {
+            curr: 1
+          },
+          where: {
+            searchParams: result
+          }
+        }, 'data');
+        return false;
+      });
+      
+        $("#addUser").on("click", function () {
+          layer.open({
+          type: 2,
+          title: "新增用户",
+          area: ['100%', '100%'],
+          content: "./addStaffManagement.html",
+          scrollbar: false,
+          // offset: 't'
+        })
+
+      });
+       //模拟数据1
+  var data1 = [{
+    title: '部门'
+    ,id: 1
+    ,children: [{
+      title: '销售部'
+      ,id: 1000
+    },{
+      title: '售后部'
+      ,id: 1001
+    },{
+      title: '人事部'
+      ,id: 1002
+    }]
+  }]
+      // 监听添加操作
+      $("#add-open").on("click", function () {
+        layer.open({
+        title: '提示'
+        ,content: '加入待选报价单成功！'
+      }); 
+
+      });
+    //开启节点操作图标
+    tree.render({
+        elem: '#test9'
+        ,data: data1
+        ,edit: ['add', 'update', 'del'] //操作节点的图标
+        ,click: function(obj){
+        layer.msg(JSON.stringify(obj.data));
+        }
+  });
+      // 监听删除操作
+      $(".data-delete-btn").on("click", function () {
+        var checkStatus = table.checkStatus('currentTableId'),
+          data = checkStatus.data;
+        layer.alert(JSON.stringify(data));
+      });
+
+      //监听表格复选框选择
+      table.on('checkbox(currentTableFilter)', function (obj) {
+        console.log(obj)
+      });
+
+      table.on('tool(currentTableFilter)', function (obj) {
+        var data = obj.data;
+        if (obj.event === 'edit') {
+          layer.alert('编辑行：<br>' + JSON.stringify(data))
+        } else if (obj.event === 'delete') {
+          layer.confirm('真的删除行么', function (index) {
+            obj.del();
+            layer.close(index);
+          });
+        }
+      });
+
+    });
+  </script>
+  <script>
+
+  </script>
+
+</body>
+
+</html>

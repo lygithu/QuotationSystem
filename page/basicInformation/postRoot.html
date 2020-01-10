@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../lib/layui-v2.5.4/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../css/public.css" media="all">
+  <link rel="stylesheet" href="../../css/systeming.css" media="all">
+  </link>
+</head>
+
+<body>
+  <div class="layuimini-container">
+    <div class="layuimini-main">
+      <fieldset class="layui-elem-field layuimini-search">
+        <legend>搜索条件</legend>
+        <div style="margin: 10px 10px 10px 10px">
+          <form class="layui-form layui-form-pane" action="">
+            <div class="layui-form-item">
+                    <div class="layui-inline">
+                            <label class="layui-form-label">部门名称</label>
+                            <div class="layui-input-inline">
+                              <select>
+                                <option value="">请选择</option>
+                                <option value="1">行政部</option>
+                                <option value="2">销售部</option>
+                                <option value="3">人事部</option>
+                              </select>
+                            </div>
+                          </div>
+              <div class="layui-inline">
+                <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">查询</a>
+                <button type="button" class="layui-btn layui-btn-normal" id="addPost">
+                        <i class="layui-icon">&#xe608;</i> 
+                   新增部门
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </fieldset>
+      <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+      <script type="text/html" id="currentTableBar">
+        <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+      </script>
+    </div>
+  </div>
+  <script src="../../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+  <script>
+    layui.use(['form', 'table', 'laydate'], function () {
+      var $ = layui.jquery,
+        form = layui.form,
+        laydate = layui.laydate,
+        table = layui.table;
+
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#date1' //指定元素
+      });
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#date2' //指定元素
+      });
+      var postJson = [
+            {
+            "t1": "行政部",
+            "t2": "30",
+            "t3": "李小明",
+            "t4": "暂无相关描述",
+            "t5": "启用",
+            "t6": "2019-08-25 14:54"
+            },{
+            "t1": "行政部",
+            "t2": "30",
+            "t3": "李小明",
+            "t4": "暂无相关描述",
+            "t5": "启用",
+            "t6": "2019-08-25 14:54"
+            },{
+            "t1": "行政部",
+            "t2": "30",
+            "t3": "李小明",
+            "t4": "暂无相关描述",
+            "t5": "启用",
+            "t6": "2019-08-25 14:54"
+            },{
+            "t1": "行政部",
+            "t2": "30",
+            "t3": "李小明",
+            "t4": "暂无相关描述",
+            "t5": "启用",
+            "t6": "2019-08-25 14:54"
+            },{
+            "t1": "行政部",
+            "t2": "30",
+            "t3": "李小明",
+            "t4": "暂无相关描述",
+            "t5": "启用",
+            "t6": "2019-08-25 14:54"
+            },{
+            "t1": "行政部",
+            "t2": "30",
+            "t3": "李小明",
+            "t4": "暂无相关描述",
+            "t5": "启用",
+            "t6": "2019-08-25 14:54"
+            },{
+            "t1": "行政部",
+            "t2": "30",
+            "t3": "李小明",
+            "t4": "暂无相关描述",
+            "t5": "启用",
+            "t6": "2019-08-25 14:54"
+            },{
+            "t1": "行政部",
+            "t2": "30",
+            "t3": "李小明",
+            "t4": "暂无相关描述",
+            "t5": "启用",
+            "t6": "2019-08-25 14:54"
+            }
+        ];
+      table.render({
+        elem: '#currentTableId',
+        data: postJson,
+        cols: [
+          [
+          {
+            field: 't1',
+            title: '部门名称'
+          },
+          {
+            field: 't2',
+            title: '成员数量',
+          },
+          {
+            field: 't3',
+            title: '负责人员'
+          },
+          {
+            field: 't4',
+            title: '部门描述',
+          },{
+            field: 't5',
+            title: '状态',
+          },{
+            field: 't6',
+            title: '更新时间',
+          },
+          {
+            title: '操作',
+            minWidth: 150,
+            templet: '#currentTableBar',
+            fixed: "right",
+            align: "center"
+          }
+          ]
+        ],
+        limits: [10, 15, 20, 25, 50, 100],
+        limit: 15,
+        page: true
+      });
+
+      // 监听搜索操作
+      form.on('submit(data-search-btn)', function (data) {
+        var result = JSON.stringify(data.field);
+        // layer.alert(result, {
+        //   title: '最终的搜索信息'
+        // });
+
+        //执行搜索重载
+        table.reload('currentTableId', {
+          page: {
+            curr: 1
+          },
+          where: {
+            searchParams: result
+          }
+        }, 'data');
+
+        return false;
+      });
+      
+        $("#addPost").on("click", function () {
+          layer.open({
+          type: 2,
+          title: "新增部门",
+          area: ['100%', '100%'],
+          content: "./addPostRoot.html",
+          scrollbar: false,
+          // offset: 't'
+        })
+
+      });
+      // 监听添加操作
+      $("#add-open").on("click", function () {
+        layer.open({
+        title: '提示'
+        ,content: '加入待选报价单成功！'
+      }); 
+
+      });
+
+      // 监听删除操作
+      $(".data-delete-btn").on("click", function () {
+        var checkStatus = table.checkStatus('currentTableId'),
+          data = checkStatus.data;
+        layer.alert(JSON.stringify(data));
+      });
+
+      //监听表格复选框选择
+      table.on('checkbox(currentTableFilter)', function (obj) {
+        console.log(obj)
+      });
+
+      table.on('tool(currentTableFilter)', function (obj) {
+        var data = obj.data;
+        if (obj.event === 'edit') {
+          layer.alert('编辑行：<br>' + JSON.stringify(data))
+        } else if (obj.event === 'delete') {
+          layer.confirm('真的删除行么', function (index) {
+            obj.del();
+            layer.close(index);
+          });
+        }
+      });
+
+    });
+  </script>
+  <script>
+
+  </script>
+
+</body>
+
+</html>

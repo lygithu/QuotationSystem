@@ -1,0 +1,44 @@
+{
+  "id": "1606901",
+  "name": " ",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "954224",
+      "name": "密码",
+      "font_class": "mima",
+      "unicode": "e69f",
+      "unicode_decimal": 59039
+    },
+    {
+      "icon_id": "5485630",
+      "name": "禁止",
+      "font_class": "jinzhi",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "6798069",
+      "name": "部门管理",
+      "font_class": "bumenguanli",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "7991367",
+      "name": "修改用户信息",
+      "font_class": "xiugaiyonghuxinxi",
+      "unicode": "e6bf",
+      "unicode_decimal": 59071
+    },
+    {
+      "icon_id": "9712610",
+      "name": "禁止",
+      "font_class": "jinzhi1",
+      "unicode": "e6a7",
+      "unicode_decimal": 59047
+    }
+  ]
+}

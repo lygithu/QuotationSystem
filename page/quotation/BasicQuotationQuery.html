@@ -16,7 +16,6 @@
 <body>
   <div class="layuimini-container">
     <div class="layuimini-main">
-
       <fieldset class="layui-elem-field layuimini-search">
         <legend>搜索条件</legend>
         <div style="margin: 10px 10px 10px 10px">
@@ -62,17 +61,17 @@
                 </div>
               </div>
               <div class="layui-inline">
-                <label class="layui-form-label">报价生效日期</label>
-                <div class="layui-input-inline">
-                  <input type="text" id="date1" autocomplete="off" placeholder="报价生效日期" class="layui-input">
+                  <label class="layui-form-label">起运城市</label>
+                  <div class="layui-input-inline">
+                    <input type="text" autocomplete="off" placeholder="目的省份" class="layui-input">
+                  </div>
                 </div>
-              </div>
-              <div class="layui-inline">
-                <label class="layui-form-label">报价失效日期</label>
-                <div class="layui-input-inline">
-                  <input type="text" id="date2" autocomplete="off" placeholder="报价失效日期" class="layui-input">
-                </div>
-              </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">目的城市</label>
+                    <div class="layui-input-inline">
+                      <input type="text" autocomplete="off" placeholder="目的省份" class="layui-input">
+                    </div>
+                  </div>
               <div class="layui-inline">
                 <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">查询</a>
               </div>
@@ -88,6 +87,9 @@
         <button type="button" class="layui-btn layui-btn-normal" id="addOrder">
            查看待选报价单
         </button>
+        <button type="button" class="layui-btn">
+            <i class="layui-icon">&#xe681;</i> 导入基础报价单
+          </button>
       </div>
       <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
       <script type="text/html" id="currentTableBar">

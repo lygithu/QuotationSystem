@@ -26,13 +26,45 @@
             {
               "title": "基础报价查询",
               "href": "page/quotation/BasicQuotationQuery.html",
-              "icon": "fa fa-subway",
+              "icon": "fa fa-file-text-o",
               "target": "_self"
             },
             {
               "title": "我的报价",
               "href": "page/quotation/myQuotation.html",
+              "icon": "fa fa-file-word-o",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "基础信息管理",
+          "href": "",
+          "icon": "fa fa-meetup",
+          "target": "",
+          "child": [
+            {
+              "title": "用户角色菜单",
+              "href": "page/basicInformation/menuManagement.html",
+              "icon": "fa fa-file-word-o",
+              "target": "_self"
+            }, 
+            {
+              "title": "产品管理",
+              "href": "page/basicInformation/productManagement.html",
               "icon": "fa fa-train",
+              "target": "_self"
+            },
+            {
+              "title": "用户管理",
+              "href": "page/basicInformation/staffManagement.html",
+              "icon": "fa fa-users",
+              "target": "_self"
+            },
+            {
+              "title": "角色管理",
+              "href": "page/basicInformation/roleManagement.html",
+              "icon": "fa fa-user",
               "target": "_self"
             }
           ]
